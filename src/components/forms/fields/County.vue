@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <label :for="uniqId" class="col-3">Maakond</label>
+    <label :for="uniqId" class="col-3 mt-1">Maakond</label>
       <select class="custom-select col-6 text-left" v-model="selectedCounty" :id="uniqId">
         <option selected>vali</option>
         <option v-for="county in counties" v-bind:value="county['id']">{{ county["name"] }}</option>

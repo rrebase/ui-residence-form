@@ -9,6 +9,7 @@ import FifthForm from '../components/forms/FifthForm';
 import SixthForm from '../components/forms/SixthForm';
 import SeventhForm from '../components/forms/SeventhForm';
 import EighthForm from '../components/forms/EighthForm';
+import FinalForm from '../components/forms/FinalForm';
 
 Vue.use(Router);
 
@@ -22,43 +23,48 @@ export default new Router({
     },
     {
       path: '/form-1',
-      name: 'First',
+      name: '1',
       component: FirstForm
     },
     {
       path: '/form-2',
-      name: 'Second',
+      name: '2',
       component: SecondForm
     },
     {
       path: '/form-3',
-      name: 'Third',
+      name: '3',
       component: ThirdForm
     },
     {
       path: '/form-4',
-      name: 'Fourth',
+      name: '4',
       component: FourthForm
     },
     {
       path: '/form-5',
-      name: 'Fifth',
+      name: '5',
       component: FifthForm
     },
     {
       path: '/form-6',
-      name: 'Sixth',
+      name: '6',
       component: SixthForm
     },
     {
       path: '/form-7',
-      name: 'Seventh',
+      name: '7',
       component: SeventhForm
     },
     {
       path: '/form-8',
-      name: 'Eighth',
+      name: '8',
       component: EighthForm
+    },
+    {
+      path: '/form-9',
+      name: '9',
+      component: FinalForm
     },
   ],
   mode: 'history'

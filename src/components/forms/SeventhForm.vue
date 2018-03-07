@@ -13,10 +13,15 @@
         <LastName class="mt-3"/>
         <IdCode class="mt-3"/>
         <Confirmation class="mt-3"/>
-        <div class="mt-4">
-          <router-link :to="{name: 'Eighth'}">
-            <button onclick="console.log('next');" type="submit" class="btn btn-primary">Edasi</button>
-          </router-link>
+        <div class="mt-4 row">
+          <div class="col text-left">
+            <button v-on:click="toBack($event)" type="submit" class="btn btn-info">Tagasi</button>
+          </div>
+          <div class="col text-right">
+            <router-link :to="{name: data['next'].toString()}">
+              <button v-on:click="toNext($event)" type="submit" class="btn btn-primary">Edasi</button>
+            </router-link>
+          </div>
         </div>
       </form>
       <div class="modal fade" id="roomModal" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
@@ -56,11 +61,14 @@
   import IdCode from './fields/IdCode'
   import Confirmation from './fields/Confirmation'
 
+  import bus from './bus.js'
+
   export default {
     name: "seventh-form",
     data() {
       return {
         msg: 'Ruumi omaniku nõusolek',
+        data: {"counter": 5, "queue": [1, 0, 0, 0, 0, 0, 0, 0], "next": 8, "last": 6}
       }
     },
     components: {
@@ -68,6 +76,29 @@
       LastName,
       IdCode,
       Confirmation
+    },
+    methods: {
+      toNext: function (event) {
+        event.preventDefault();
+        bus.$emit('call', null);
+        this.data['next'] = 8;
+        bus.$emit('call', this.data);
+        this.$router.push('form-' + this.data['next']);
+      },
+      toBack: function (event) {
+        event.preventDefault();
+        this.$router.go(-1);
+      }
+    },
+    updated() {
+    },
+    created() {
+    },
+    mounted() {
+      bus.$emit('call', null);
+      bus.$on('update', data => {
+        this.data = data;
+      });
     }
   }
 </script>

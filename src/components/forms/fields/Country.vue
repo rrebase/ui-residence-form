@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <label :for="uniqId" class="col-3">Riik</label>
+    <label :for="uniqId" class="col-3 mt-1">Riik</label>
       <select class="custom-select col-6 text-left" v-model="selectedCountry" :id="uniqId">
         <option selected>vali</option>
         <option v-for="country in countries" v-bind:value="country['id']">{{ country["name"] }}</option>

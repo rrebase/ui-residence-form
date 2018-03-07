@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <router-link :to="{ name: 'First' }">1</router-link>
-    <router-link :to="{ name: 'Second' }">2</router-link>
-    <router-link :to="{ name: 'Third' }">3</router-link>
-    <router-link :to="{ name: 'Fourth' }">4</router-link>
-    <router-link :to="{ name: 'Fifth' }">5</router-link>
-    <router-link :to="{ name: 'Sixth' }">6</router-link>
-    <router-link :to="{ name: 'Seventh' }">7</router-link>
-    <router-link :to="{ name: 'Eighth' }">8</router-link>
-    <router-view/>
+    <!--<router-link :to="{ name: '1' }">1</router-link>-->
+    <!--<router-link :to="{ name: '2' }">2</router-link>-->
+    <!--<router-link :to="{ name: '3' }">3</router-link>-->
+    <!--<router-link :to="{ name: '4' }">4</router-link>-->
+    <!--<router-link :to="{ name: '5' }">5</router-link>-->
+    <!--<router-link :to="{ name: '6' }">6</router-link>-->
+    <!--<router-link :to="{ name: '7' }">7</router-link>-->
+    <!--<router-link :to="{ name: '8' }">8</router-link>-->
+    <!--<router-link :to="{ name: '9' }">9</router-link>-->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <!--<FirstForm/>-->
     <!--<SecondForm/>-->
     <!--<ThirdForm/>-->
@@ -31,6 +34,7 @@
   import SixthForm from './components/forms/SixthForm'
   import SeventhForm from './components/forms/SeventhForm'
   import EighthForm from './components/forms/EighthForm'
+  import FinalForm from './components/forms/FinalForm'
 
   export default {
     name: 'App',
@@ -42,7 +46,8 @@
       FifthForm,
       SixthForm,
       SeventhForm,
-      EighthForm
+      EighthForm,
+      FinalForm
     },
     created() {
       let attrs = {
@@ -56,7 +61,9 @@
         "zipcode": "Postiindeks",
         "expiryfrom": "Kuupäev",
         "expiryto": "Kuupäev",
-        "date": "Kuupäev"
+        "date": "Kuupäev",
+        "nation": "Rahvus",
+        "tong": "Emakeel"
       };
       let res = {};
       let keys = Object.keys(attrs);

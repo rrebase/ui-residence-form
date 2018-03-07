@@ -12,3 +12,17 @@ body {
   padding: 5%;
   border-radius: 5px;
 }
+
+
+@media screen and (max-width: 1024px) {
+    body {
+      font-size: 14px;
+    }
+
+    input {
+      font-size: 10px;
+    }
+    .form-container {
+        margin: 8% 4% 8%;
+    }
+}

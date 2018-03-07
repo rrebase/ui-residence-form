@@ -6,21 +6,22 @@ import router from './router'
 import VeeValidate from 'vee-validate';
 // noinspection JSUnresolvedFunction
 require('bootstrap');
+import jQuery from 'jquery'
 
 Vue.use(VeeValidate, {locale: 'et'});
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$nextForm = 5;
+export const EventBus = new Vue();
 
 Vue.use({
-    install: function(Vue, options) {
-        Object.defineProperty(Vue.prototype, "uniqId", {
-            get: function uniqId() {
-                return this._uid;
-            }
-        });
-    }
+  install: function (Vue, options) {
+    Object.defineProperty(Vue.prototype, "uniqId", {
+      get: function uniqId() {
+        return this._uid;
+      }
+    });
+  }
 });
 
 new Vue({
@@ -35,6 +36,3 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
 
-// jQuery.get("https://ipinfo.io", function (response) {
-//   console.log(response.city, response.country);
-// }, "jsonp");

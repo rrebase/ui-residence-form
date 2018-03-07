@@ -9,10 +9,15 @@
         <Street class="mt-3"/>
         <ZipCode class="mt-3"/>
         <LiveElse class="mt-3"/>
-        <div class="mt-4">
-          <router-link :to="{name: 'Third'}">
-            <button onclick="console.log('next');" type="submit" class="btn btn-primary">Edasi</button>
-          </router-link>
+        <div class="mt-4 row">
+          <div class="col text-left">
+            <button v-on:click="toBack($event)" type="submit" class="btn btn-info">Tagasi</button>
+          </div>
+          <div class="col text-right">
+            <router-link :to="{name: data['next'].toString()}">
+              <button v-on:click="toNext($event)" type="submit" class="btn btn-primary">Edasi</button>
+            </router-link>
+          </div>
         </div>
       </form>
     </div>
@@ -27,12 +32,16 @@
   import ZipCode from './fields/ZipCode'
   import LiveElse from './fields/LiveElse'
 
+  import bus from './bus.js'
 
   export default {
     name: "second-form",
     data() {
       return {
         msg: 'Uue elukoha aadress',
+        data: {"counter": 5, "queue": [1, 0, 0, 0, 0, 0, 0, 0], "next": 3, "last": 1},
+        realnext: null,
+        c: 0
       }
     },
     components: {
@@ -42,6 +51,41 @@
       Street,
       ZipCode,
       LiveElse
+    },
+    methods: {
+      toNext: function (event) {
+        event.preventDefault();
+        bus.$emit('call', null);
+        this.data['next'] = 3;
+        bus.$emit('call', this.data);
+        console.log("");
+        if (this.realnext !== null) {
+          this.$router.push('form-' + this.realnext);
+        } else {
+          this.$router.push('form-' + this.data['next']);
+        }
+      },
+      toBack: function (event) {
+        event.preventDefault();
+        this.$router.go(-1);
+      }
+    },
+    updated() {
+    },
+    created() {
+      bus.$on('liveelse', data => {
+        if (data) {
+          this.realnext = 5;
+        } else {
+          this.realnext = 3;
+        }
+      })
+    },
+    mounted() {
+      bus.$emit('call', null);
+      bus.$on('update', data => {
+        this.data = data;
+      });
     }
   }
 </script>

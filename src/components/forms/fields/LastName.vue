@@ -10,6 +10,13 @@
 
 <script>
   export default {
+    // inject: ['$validator'],
+    // inject: {
+    //   $validator: '$validator'
+    // },
+    // $_veeValidate: {
+    //   validator: 'new' // give me a new validator each time.
+    // },
     name: "last-name",
   }
 </script>
